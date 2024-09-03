@@ -1,7 +1,6 @@
 import os
 import pickle
 from collections import defaultdict
-from contextlib import redirect_stdout
 from Knowledge import Knowledge
 from Tools import Tools
 from DirectoriesUtil import Dicrectories
@@ -83,7 +82,6 @@ for tw in output_active_list:
         training_time, target_word_clauses = knowledge.generate(X_train, tw)
         
     total_training_time = total_training_time + training_time
-    clauses_progress_bar = tqdm(total=len(target_word_clauses), desc="Running Clauses")
     for clause in target_word_clauses:
         # weight = clause[0]
         related_literals = clause[1]
@@ -99,7 +97,4 @@ for tw in output_active_list:
                 total_training_time = total_training_time + training_time
             # feature_progress_bar.update(1)
         # feature_progress_bar.close()
-        clauses_progress_bar.update(1)
-    clauses_progress_bar.close()
-
 Tools.print_training_time(total_training_time)
