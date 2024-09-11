@@ -1,4 +1,4 @@
-# IMDb Dataset Preparation and Knowledge Collection
+# IMDb Dataset Preparation and Knowledge Collection using Tsetlin Machine Autoencoder
 
 This repository contains code to prepare the IMDb dataset for training and to collect knowledge using a TM autoencoder. Below is a step-by-step guide on how to use the scripts in this repository.
 
