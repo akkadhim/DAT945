@@ -2,6 +2,18 @@
 
 This repository contains code to prepare the IMDb dataset for training and to collect knowledge using a TM autoencoder. Below is a step-by-step guide on how to use the scripts in this repository.
 
+---
+
+### Requirements
+
+Make sure you have the following libraries installed before running the scripts:
+
+```bash
+pip install git+https://github.com/cair/tmu.git
+```
+
+---
+
 ## Files in the Repository
 
 - **`Prepare.py`**: This script prepares the IMDb dataset for training.
@@ -83,21 +95,4 @@ After running the above steps, your folder should look like this:
 ├── y_train.npy
 ├── X_test.npy
 ├── y_test.npy
-```
-
----
-
-### Requirements
-
-Make sure you have the following libraries installed before running the scripts:
-
-```bash
-pip install git+https://github.com/cair/tmu.git
-```
-
----
-
-### License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 ```
