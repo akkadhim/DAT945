@@ -4,7 +4,7 @@ This repository contains code to prepare the IMDb dataset for training and to co
 
 ---
 
-### Requirements
+## Requirements
 
 Make sure you have the following libraries installed before running the scripts:
 
