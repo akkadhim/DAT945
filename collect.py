@@ -7,7 +7,9 @@ from directories import dicrectories
 import numpy as np
 
 knowledge_directory = dicrectories.knowledge
-
+if not os.path.exists(knowledge_directory):
+    os.makedirs(knowledge_directory)
+    
 target_similarity=defaultdict(list)
 clause_weight_threshold = 10
 number_of_examples = 2000

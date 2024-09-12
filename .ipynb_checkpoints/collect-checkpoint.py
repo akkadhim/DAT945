@@ -1,13 +1,15 @@
 import os
 import pickle
 from collections import defaultdict
-from Knowledge import Knowledge
-from Tools import Tools
-from DirectoriesUtil import Dicrectories
+from knowledge import knowledge
+from tools import tools
+from directories import dicrectories
 import numpy as np
 
-knowledge_directory = Dicrectories.knowledge
-
+knowledge_directory = dicrectories.knowledge
+if not os.path.exists(knowledge_directory):
+    os.makedirs(knowledge_directory)
+    
 target_similarity=defaultdict(list)
 clause_weight_threshold = 10
 number_of_examples = 2000
@@ -19,7 +21,7 @@ T = factor*40
 s = 5.0
 epochs = 25
 
-knowledge = Knowledge(
+knowledge = knowledge(
     clause_weight_threshold, 
     number_of_examples, 
     accumulation, 
@@ -33,9 +35,7 @@ def preprocess_text(text):
     return text
 with open('vectorizer_X.pickle', 'rb') as f:
     vectorizer_X = pickle.load(f)
-# vectorizer_X = Tools.read_pickle_data("vectorizer_X.pickle")
 number_of_features = vectorizer_X.get_feature_names_out().shape[0]
-# number_of_features = len(vectorizer_X.get_feature_names())
 X_train = np.load('X_train.npy')
 
 max_id = len(vectorizer_X.vocabulary_) - 1
@@ -59,7 +59,6 @@ for id in sorted(missing_ids):
     word = vectorizer_X.get_feature_names_out()[id]
     output_active[i] = id
     target_words.append(i)
-    # print(id)
     i = i + 1
     
 print("Epochs: %d" % epochs)
@@ -72,6 +71,8 @@ total_training_time = 0
 
 for tw in output_active_list:
     knowledge_filepath = os.path.join(knowledge_directory , str(tw) + '.pkl')
+
+    # get the knowledge for the TW
     if os.path.exists(knowledge_filepath):
         print("\nTW file exists: %s" % vectorizer_X.get_feature_names_out()[tw])
         with open(knowledge_filepath, 'rb') as f:
@@ -81,20 +82,16 @@ for tw in output_active_list:
         print("\nTW run: %s" % vectorizer_X.get_feature_names_out()[tw])
         training_time, target_word_clauses = knowledge.generate(X_train, tw)
         
+    # for each feature in the generated clauses also get the knowledge 
     total_training_time = total_training_time + training_time
     for clause in target_word_clauses:
-        # weight = clause[0]
         related_literals = clause[1]
-        # feature_progress_bar = tqdm(total=len(related_literals), desc="Running Features")
         for literal in related_literals:
             knowledge_filepath = os.path.join(knowledge_directory , str(literal) + '.pkl')
             if os.path.exists(knowledge_filepath):
                 pass
-                # print("Feature file exists: %s" % vectorizer_X.get_feature_names_out()[literal])
             else:
                 print("Feature run: %s" % vectorizer_X.get_feature_names_out()[literal])
                 training_time, inner_target_word_clauses = knowledge.generate(X_train, literal)
                 total_training_time = total_training_time + training_time
-            # feature_progress_bar.update(1)
-        # feature_progress_bar.close()
-Tools.print_training_time(total_training_time)
+tools.print_training_time(total_training_time)
