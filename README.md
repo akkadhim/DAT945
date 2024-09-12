@@ -1,10 +1,38 @@
-# IMDb Dataset Preparation and Knowledge Collection using Tsetlin Machine Autoencoder
+# IMDb Dataset Preparation, Knowledge Collection, and Data Augmentation
 
-This repository contains code to prepare the IMDb dataset for training and to collect knowledge using a TM autoencoder. Below is a step-by-step guide on how to use the scripts in this repository.
+This repository provides code to prepare the IMDb dataset for training, collect knowledge using a TM autoencoder, and apply data augmentation using EDA. You have the option to either:
+
+1. **Use the provided pre-generated knowledge files** along with the `Report.ipynb` notebook to save time, or
+2. **Build everything from scratch** by following the steps outlined below.
 
 ---
 
-## Requirements
+## Files in the Repository
+
+- **`prepare.py`**: Prepares the IMDb dataset for training.
+- **`collect.py`**: Trains a TM autoencoder and collects knowledge for all tokens in the IMDb dataset.
+- **`eda.py`**: Performs data augmentation using EDA (Easy Data Augmentation) and knowledge-based synonym replacement for the IMDb dataset.
+- **`Report.ipynb`**: A Jupyter notebook that demonstrates the entire process, including dataset preparation, knowledge collection, and data augmentation. You can use this with pre-existing IMDb knowledge files to skip the lengthy knowledge generation process.
+- **Pre-generated IMDb knowledge files**: Files included in the repository that you can use to skip the time-consuming knowledge generation process.
+
+---
+
+## Quick Start Options
+
+### Option 1: Use Pre-generated IMDb Knowledge Files
+
+If you want to avoid the time-consuming process of generating knowledge files, you can directly use the `Report.ipynb` notebook with the pre-existing IMDb knowledge files. These files are already included in the repository for a specific setup.
+
+- Simply open `Report.ipynb` and follow the steps.
+  
+### Option 2: Build Everything from Scratch
+
+If you prefer to generate everything from scratch, follow the steps below to prepare the IMDb dataset, perform data augmentation, and train the TM autoencoder.
+
+---
+
+## Steps to Use the Repository
+### Requirements
 
 Make sure you have the following libraries installed before running the scripts:
 
@@ -14,15 +42,7 @@ pip install git+https://github.com/cair/tmu.git
 
 ---
 
-## Files in the Repository
-
-- **`prepare.py`**: This script prepares the IMDb dataset for training.
-- **`collect.py`**: This script uses a TM autoencoder to train the model and collect knowledge for each token in the IMDb dataset.
-
-## Steps to Use the Repository
-
 ### Step 1: Prepare the IMDb Dataset
-
 First, you need to run `prepare.py` to process and prepare the IMDb dataset for training. This script performs the following tasks:
 
 - It processes the IMDb dataset.
@@ -84,8 +104,10 @@ After running the above steps, your folder should look like this:
 
 ```
 .
-├── collect.py
+├── Report.ipynb
 ├── prepare.py
+├── collect.py
+├── eda.py
 ├── IMDbKnowledge/
 │   ├── 1.pickle
 │   ├── 2.pickle
