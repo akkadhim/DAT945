@@ -16,14 +16,14 @@ pip install git+https://github.com/cair/tmu.git
 
 ## Files in the Repository
 
-- **`Prepare.py`**: This script prepares the IMDb dataset for training.
-- **`CollectKnowledge.py`**: This script uses a TM autoencoder to train the model and collect knowledge for each token in the IMDb dataset.
+- **`prepare.py`**: This script prepares the IMDb dataset for training.
+- **`collect.py`**: This script uses a TM autoencoder to train the model and collect knowledge for each token in the IMDb dataset.
 
 ## Steps to Use the Repository
 
 ### Step 1: Prepare the IMDb Dataset
 
-First, you need to run `Prepare.py` to process and prepare the IMDb dataset for training. This script performs the following tasks:
+First, you need to run `prepare.py` to process and prepare the IMDb dataset for training. This script performs the following tasks:
 
 - It processes the IMDb dataset.
 - It generates a vectorizer and saves it as a pickle file (`vectorizer_X.pickle`).
@@ -36,7 +36,7 @@ First, you need to run `Prepare.py` to process and prepare the IMDb dataset for 
 #### To Run:
 
 ```bash
-python Prepare.py
+python prepare.py
 ```
 
 #### Outputs:
@@ -53,13 +53,13 @@ Make sure all these files are in the same directory when proceeding to the next 
 
 ### Step 2: Train and Collect Knowledge
 
-Once the dataset is prepared, you can proceed to train the model and collect knowledge for all tokens in the IMDb dataset. To do this, run `CollectKnowledge.py`.
+Once the dataset is prepared, you can proceed to train the model and collect knowledge for all tokens in the IMDb dataset. To do this, run `collect.py`.
 
 Before running this script, ensure the following conditions are met:
 
-- The files `vectorizer_X.pickle`, `X_train.npy`, `y_train.npy`, `X_test.npy`, and `y_test.npy` must be in the same directory as the `CollectKnowledge.py` script.
+- The files `vectorizer_X.pickle`, `X_train.npy`, `y_train.npy`, `X_test.npy`, and `y_test.npy` must be in the same directory as the `collect.py` script.
   
-`CollectKnowledge.py` will:
+`collect.py` will:
 
 - Train a TM autoencoder on the IMDb dataset using the files generated in the previous step.
 - Collect knowledge for each token in the vocabulary.
@@ -68,7 +68,7 @@ Before running this script, ensure the following conditions are met:
 #### To Run:
 
 ```bash
-python CollectKnowledge.py
+python collect.py
 ```
 
 #### Outputs:
@@ -84,8 +84,8 @@ After running the above steps, your folder should look like this:
 
 ```
 .
-├── CollectKnowledge.py
-├── Prepare.py
+├── collect.py
+├── prepare.py
 ├── IMDbKnowledge/
 │   ├── 1.pickle
 │   ├── 2.pickle
