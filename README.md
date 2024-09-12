@@ -97,7 +97,10 @@ python collect.py
 - For each token in the vocabulary, a corresponding pickle file will be generated and stored in the `IMDbKnowledge` folder.
 
 ---
+### Step 3: Data Augmentation with EDA and Knowledge
+Use Report.ipynb for data augmentation and synonym replacement using EDA (Easy Data Augmentation). This step generates an augmented text file based on the input file.
 
+---
 ### Folder Structure
 
 After running the above steps, your folder should look like this:
@@ -117,4 +120,6 @@ After running the above steps, your folder should look like this:
 ├── y_train.npy
 ├── X_test.npy
 ├── y_test.npy
+├── input_text.txt
+├── output_text.txt
 ```
