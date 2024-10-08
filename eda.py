@@ -59,7 +59,7 @@ def preprocess_text(text):
 knowledge_directory = dicrectories.knowledge
 
 def knowledge_replacement(word):
-    print("original word:",word)
+    # print("original word:",word)
     vectorizer_X = tools.read_pickle_data("vectorizer_X.pickle")
     id = vectorizer_X.vocabulary_.get(word, None)
     if id is None:
@@ -82,7 +82,7 @@ def knowledge_replacement(word):
     
     if len(top_features) > 0:
         top_features_list = list(top_features) # Convert set to list
-        print("knowledge word:",top_features_list[0])        
+        # print("knowledge word:",top_features_list[0])        
         return top_features_list[0]
     else:
         return word
