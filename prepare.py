@@ -5,7 +5,7 @@ from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.text import text_to_word_sequence
 
 # Parameters
-NUM_WORDS = 10000  # Example number of features
+NUM_WORDS = 20000  # Example number of features
 BINARY = True
 
 # Preprocessing function
