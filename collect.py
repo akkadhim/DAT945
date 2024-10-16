@@ -15,9 +15,8 @@ clause_weight_threshold = 10
 number_of_examples = 2000
 accumulation = 25
 clause_drop_p = 0.0
-factor = 40
-clauses = int(factor*20/(1.0 - clause_drop_p))
-T = factor*40
+clauses = 800
+T = 1600
 s = 5.0
 epochs = 25
 
@@ -26,7 +25,7 @@ knowledge = knowledge(
     number_of_examples, 
     accumulation, 
     clause_drop_p, 
-    factor, 
+    clauses, 
     T, 
     s, 
     epochs)
@@ -63,6 +62,7 @@ for id in sorted(missing_ids):
     
 print("Epochs: %d" % epochs)
 print("Example: %d" % number_of_examples)
+print("Clauses: %d" % clauses)
 print("Target words: %d" % len(target_words))
 print("Accumulation: %d" % accumulation)
 print("No of features: %d" % number_of_features)
